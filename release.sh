@@ -52,7 +52,9 @@ fi
 BUILD_ARTIFACTS_FOLDER=build-artifacts-$(date +%s)
 mkdir -p ${INPUT_PROJECT_PATH}/${BUILD_ARTIFACTS_FOLDER}
 cd ${INPUT_PROJECT_PATH}
+echo "INPUT_BUILD_COMMAND: ${INPUT_BUILD_COMMAND}"
 if [[ "${INPUT_BUILD_COMMAND}" =~ ^make.* ]]; then
+    echo "This should have triggered"
     # start with make, assumes using make to build golang binaries, execute it directly
     GOOS=${INPUT_GOOS} GOARCH=${INPUT_GOARCH} eval ${INPUT_BUILD_COMMAND}
     if [ -f "${BINARY_NAME}${EXT}" ]; then
